@@ -105,14 +105,14 @@ float getRandomDirection(void){
 
 void cycleGameMode(ballsGame * game, bool upDown){
 	if(upDown){
-		if(game->mode == BLADE){
+		if(game->mode == MAX_GAME_TYPES){
 			game->mode = NORMAL;
 		}
 		else game->mode++;
 	}
 	else{
 		if(game->mode == NORMAL){
-			game->mode = BLADE;
+			game->mode = MAX_GAME_TYPES-1;
 		}
 		else game->mode--;
 	}

@@ -33,7 +33,7 @@ bool loadGame(ballsGame * game){
 
 	SDL_Surface * surface = NULL;
 
-	for(int i = 0; i<= DEVIL; i++){
+	for(int i = 0; i< MAX_BALL_ART; i++){
 		surface = IMG_Load(imageFiles[i]);
 		game->ballArt[i] = SDL_CreateTextureFromSurface(
 				game->renderer, surface);
@@ -48,7 +48,7 @@ bool loadGame(ballsGame * game){
 			"art/cursor_blade.png"
 	};
 
-	for(int i = 0; i<= BLADE; i++){
+	for(int i = 0; i< MAX_GAME_TYPES; i++){
 		surface = IMG_Load(imageFilesCursor[i]);
 		game->cursorArt[i] = SDL_CreateTextureFromSurface(
 				game->renderer, surface);

@@ -51,7 +51,12 @@ int main(int argc, char *argv[]){
     	SDL_Delay(1000/60);
     }
 
-    /*	 Quit SDL	*/
+
+	for(int i = 0; i < MAX_BALLS; i++){
+		free(ballsGame.balls[i]);
+	}
+
+	/*	 Quit SDL	*/
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
     TTF_CloseFont(ballsGame.font);
@@ -59,12 +64,12 @@ int main(int argc, char *argv[]){
     window = NULL;
     ballsGame.font = NULL;
 
-	for(int i = 0; i<= DEVIL; i++){
+	for(int i = 0; i < MAX_BALL_ART; i++){
 		SDL_DestroyTexture(ballsGame.ballArt[i]);
 		ballsGame.ballArt[i] = NULL;
 	}
 
-	for(int i = 0; i<= BLADE; i++){
+	for(int i = 0; i< MAX_GAME_TYPES; i++){
 		SDL_DestroyTexture(ballsGame.cursorArt[i]);
 		ballsGame.cursorArt[i] = NULL;
 	}

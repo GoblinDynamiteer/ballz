@@ -53,13 +53,12 @@
 /*	 Cursor stuff	*/
 /*	 Blade mode rotation	*/
 #define BLADE_SPEED 10.5
-#define MAX_TYPES 10
 
 /*	 Game modes // Cursors	*/
-enum {NORMAL, MAGNET, REPEL, BLADE};
+enum {NORMAL, MAGNET, REPEL, BLADE, MAX_GAME_TYPES};
 
 /*	 Ball colors, for texture array index	*/
-enum {RED, YELLOW, BLUE, GREEN, SMILEY, PURPLE, DEVIL};
+enum {RED, YELLOW, BLUE, GREEN, SMILEY, PURPLE, DEVIL, MAX_BALL_ART};
 
 enum {VERTICAL, HORIZONTAL};
 
@@ -84,7 +83,7 @@ typedef struct ballsGame{
 	SDL_Window * window;
 	SDL_Renderer * renderer;
 	ball * balls[MAX_BALLS];
-	SDL_Texture * cursorArt[MAX_TYPES];
+	SDL_Texture * cursorArt[MAX_GAME_TYPES];
 	SDL_Texture * shield;
 	position cursor;
 	double cursorAngle;
@@ -93,7 +92,7 @@ typedef struct ballsGame{
 	int createdBalls;
 	int killedBalls;
 	/*	 Flexible struct member needs to be last.	*/
-	SDL_Texture * ballArt[];
+	SDL_Texture * ballArt[MAX_BALL_ART];
 
 }ballsGame;
 

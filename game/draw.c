@@ -41,6 +41,8 @@ void drawText(ballsGame * game, char * text, int pos){
 	SDL_Rect textRect = {10, FONT_SIZE * pos + 2, 0, 0};
 	SDL_QueryTexture(textTexture, NULL, NULL, &textRect.w, &textRect.h);
 	SDL_RenderCopy(game->renderer, textTexture, NULL, &textRect);
+
+	SDL_FreeSurface(textSurface);
 }
 
 void renderBalls(ballsGame * game){

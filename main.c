@@ -47,15 +47,25 @@ int main(int argc, char *argv[]){
     loadGame(&ballsGame);
 
     while(processEvent(&ballsGame)){
-    	if(!renderGame(&ballsGame)){
-    		break;
-    	}
+    	renderGame(&ballsGame);
     	SDL_Delay(1000/60);
     }
 
     /*	 Quit SDL	*/
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
+    TTF_CloseFont(ballsGame.font);
+    renderer = NULL;
+    window = NULL;
+    ballsGame.font = NULL;
+
+	for(int i = 0; i<= DEVIL; i++){
+		SDL_DestroyTexture(ballsGame.ballArt[i]);
+	}
+
+	for(int i = 0; i<= BLADE; i++){
+		SDL_DestroyTexture(ballsGame.cursorArt[i]);
+	}
 
     //Quit SDL subsystems
     TTF_Quit();

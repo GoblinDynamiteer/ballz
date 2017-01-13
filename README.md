@@ -10,6 +10,9 @@ Left / Right mouse button adds balls.
 Scrolling the wheel cycles through modes: Create balls, repel, magnet.  
 
 
+[YouTube demo](https://www.youtube.com/watch?v=ErFAqmyj5XM)  
+
+
 ---
 
 **Screenshots**   

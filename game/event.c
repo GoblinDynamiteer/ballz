@@ -76,6 +76,8 @@ bool processEvent(ballsGame * game){
 		borderCheck(game, i);
 	}
 
+	game->ticker++;
+
 	return (quit == 0);
 }
 

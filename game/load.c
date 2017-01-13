@@ -55,7 +55,7 @@ bool loadGame(ballsGame * game){
 	}
 
 	/*	 Load shield bubble	*/
-	surface = IMG_Load("art/cursor_shield.png");
+	surface = IMG_Load("art/cursor_shield_anim.png");
 	game->shield = SDL_CreateTextureFromSurface(
 			game->renderer, surface);
 
@@ -65,8 +65,9 @@ bool loadGame(ballsGame * game){
 	game->cursorAngle = 0.0;
 	game->mode = NORMAL;
 	game->createdBalls = 0;
-
+	game->ticker = 0;
 	game->killedBalls = 0;
+	game->shieldFrame = 0;
 
 	game->font = TTF_OpenFont("font/joystix_monospace.ttf", FONT_SIZE);
 

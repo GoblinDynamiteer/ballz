@@ -106,8 +106,10 @@ void renderCursor(ballsGame * game){
 	);
 }
 
+/*	 Animates the forcefield shield	*/
 void drawShield(ballsGame * game){
 	SDL_Rect shieldRect;
+	SDL_Rect targetRect;
 
 	/*	 Gets width and height from texture	*/
 	SDL_QueryTexture(
@@ -118,14 +120,28 @@ void drawShield(ballsGame * game){
 		&shieldRect.h
 	);
 
-	shieldRect.x = game->cursor.x - shieldRect.w / 2;
-	shieldRect.y = game->cursor.y - shieldRect.h / 2;
+	/*	 Divide with by number of frames in animation	*/
+	shieldRect.w /= 6;
+	shieldRect.y = 0;
+
+	if(game->ticker % 2 == 0){
+		if(game->shieldFrame++ > 6){
+			game->shieldFrame = 0;
+		}
+	}
+
+	shieldRect.x = shieldRect.w * game->shieldFrame;
+
+	targetRect.w = shieldRect.w;
+	targetRect.h = shieldRect.h;
+	targetRect.x = game->cursor.x - targetRect.w / 2;
+	targetRect.y = game->cursor.y - targetRect.h / 2;
 
 	SDL_RenderCopy(
 		game->renderer,
 		game->shield,
-		NULL,
-		&shieldRect
+		&shieldRect,
+		&targetRect
 	);
 
 }

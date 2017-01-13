@@ -93,7 +93,8 @@ typedef struct ballsGame{
 	int killedBalls;
 	/*	 Flexible struct member needs to be last.	*/
 	SDL_Texture * ballArt[MAX_BALL_ART];
-
+	int shieldFrame;
+	Uint64 ticker;
 }ballsGame;
 
 

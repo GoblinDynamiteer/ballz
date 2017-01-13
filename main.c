@@ -8,9 +8,9 @@
 #include "def.h"
 
 int main(int argc, char *argv[]){
-	/*	 Init SDL	*/
+	/*	 Init SDL and SDL subsystems	*/
     SDL_Init(SDL_INIT_EVERYTHING);
-
+    IMG_Init(IMG_INIT_PNG);
     TTF_Init();
 
     /*	 Hide cursor	*/

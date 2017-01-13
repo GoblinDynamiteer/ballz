@@ -13,4 +13,7 @@ Scrolling the wheel cycles through modes: Create balls, repel, magnet.
 ---
 
 **Screenshots**   
-![Ballz](https://raw.githubusercontent.com/GoblinDynamiteer/eclipse_practice/master/SDL_Ballz/img/balls_002.PNG)
+![Ballz 005](https://github.com/GoblinDynamiteer/ballz/blob/master/img/balls_005.png)  
+![Ballz 006](https://github.com/GoblinDynamiteer/ballz/blob/master/img/balls_006.png)  
+![Ballz 008](https://github.com/GoblinDynamiteer/ballz/blob/master/img/balls_008.png)  
+![Ballz 009](https://github.com/GoblinDynamiteer/ballz/blob/master/img/balls_009.png)  

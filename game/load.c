@@ -64,7 +64,7 @@ bool loadGame(ballsGame * game){
 
 	game->cursorAngle = 0.0;
 	game->mode = NORMAL;
-	game->ballIndex = 0;
+	game->createdBalls = 0;
 
 	game->killedBalls = 0;
 

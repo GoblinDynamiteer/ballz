@@ -12,6 +12,9 @@ bool addBall(ballsGame * game, int x, int y){
 
 	/*	 Finds next free ball	*/
 	while(game->balls[i] != NULL && i < MAX_BALLS){
+		if(!game->balls[i]->active){
+			break;
+		}
 		i++;
 	}
 
@@ -35,6 +38,9 @@ bool addBall(ballsGame * game, int x, int y){
 
 	/*	 Set ball as active, used to destroy balls */
 	game->balls[i]->active = 1;
+
+	/*	 Ball count	*/
+	game->createdBalls++;
 
 	return 1;
 }

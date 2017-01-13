@@ -18,7 +18,7 @@ bool renderGame(ballsGame * game){
 
 	/*	 Display text	*/
 	char displayText[80];
-	sprintf(displayText, "Balls: %d", game->ballIndex);
+	sprintf(displayText, "Added balls: %d", game->createdBalls);
 	drawText(game, displayText, 0);
 	sprintf(displayText, "Killed balls: %d", game->killedBalls);
 	drawText(game, displayText, 1);

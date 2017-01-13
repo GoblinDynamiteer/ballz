@@ -90,7 +90,7 @@ typedef struct ballsGame{
 	double cursorAngle;
 	short mode;
 	TTF_Font *font;
-	int ballIndex;
+	int createdBalls;
 	int killedBalls;
 	/*	 Flexible struct member needs to be last.	*/
 	SDL_Texture * ballArt[];

@@ -75,7 +75,6 @@ bool processEvent(ballsGame * game){
 		rotateBall(game, i);
 		accelBall(game, i);
 		borderCheck(game, i);
-		game->ballIndex = i;
 	}
 
 	return 1;

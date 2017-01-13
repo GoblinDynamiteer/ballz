@@ -61,10 +61,12 @@ int main(int argc, char *argv[]){
 
 	for(int i = 0; i<= DEVIL; i++){
 		SDL_DestroyTexture(ballsGame.ballArt[i]);
+		ballsGame.ballArt[i] = NULL;
 	}
 
 	for(int i = 0; i<= BLADE; i++){
 		SDL_DestroyTexture(ballsGame.cursorArt[i]);
+		ballsGame.cursorArt[i] = NULL;
 	}
 
     //Quit SDL subsystems

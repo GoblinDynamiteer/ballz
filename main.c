@@ -56,8 +56,11 @@ int main(int argc, char *argv[]){
     /*	 Quit SDL	*/
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
-    SDL_Quit();
 
+    //Quit SDL subsystems
+    TTF_Quit();
+    IMG_Quit();
+    SDL_Quit();
 
 	return 0;
 }

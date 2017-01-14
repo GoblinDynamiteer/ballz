@@ -19,9 +19,9 @@ bool renderGame(ballsGame * game){
 	/*	 Display text	*/
 	char displayText[80];
 	sprintf(displayText, "Added balls: %d", game->createdBalls);
-	drawText(game, displayText, 0);
+	drawText(game, displayText, 10, 10);
 	sprintf(displayText, "Killed balls: %d", game->killedBalls);
-	drawText(game, displayText, 1);
+	drawText(game, displayText, 10, 10 + FONT_SIZE + 2);
 
 	/*	 Presents render	*/
 	SDL_RenderPresent(game->renderer);

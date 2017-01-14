@@ -21,11 +21,13 @@ bool processEvent(ballsGame * game){
 				break;
 			/*	 A mouse button has been pressed	*/
 			case SDL_MOUSEBUTTONDOWN:
-				if(event.button.button == SDL_BUTTON_LEFT &&
-						game->mode == NORMAL){
-					int x, y;
-					SDL_GetMouseState(&x, &y);
-					addBall(game, x, y);
+				if(event.button.button == SDL_BUTTON_LEFT){
+					if(game->mode == NORMAL){
+						addBall(game, game->cursor.x, game->cursor.y);
+					}
+					if(game->mode == NEO){
+						game->grabbedBallIndex = grabBall(game);
+					}
 				}
 				break;
 			case SDL_MOUSEWHEEL:
@@ -45,6 +47,12 @@ bool processEvent(ballsGame * game){
 		for(int i = 0; i< BALLS_PER_SPRAY; i++){
 			addBall(game, game->cursor.x, game->cursor.y);
 		}
+	}
+
+	if((mouseState & SDL_BUTTON(SDL_BUTTON_LEFT)) &&
+		game->mode == NEO &&
+		game->grabbedBallIndex >= 0){
+			freezeBalls(game, game->grabbedBallIndex);
 	}
 
 	/*	 Moves and rotate balls	*/
@@ -69,6 +77,9 @@ bool processEvent(ballsGame * game){
 				break;
 			case BLADE:
 				killBalls(game, i);
+				break;
+			case NEO:
+				;
 				break;
 		}
 		rotateBall(game, i);

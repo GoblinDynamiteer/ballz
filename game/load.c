@@ -45,7 +45,8 @@ bool loadGame(ballsGame * game){
 			"art/cursor.png",
 			"art/cursor_magnet.png",
 			"art/cursor_rep.png",
-			"art/cursor_blade.png"
+			"art/cursor_blade.png",
+			"art/cursor.png"
 	};
 
 	for(int i = 0; i< MAX_GAME_TYPES; i++){

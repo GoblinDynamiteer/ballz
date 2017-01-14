@@ -82,6 +82,27 @@ void moveBall(ballsGame * game, int i){
 	*posy += *vely;
 }
 
+void freezeBalls(ballsGame * game, int i){
+	game->balls[i]->rect.x = game->cursor.x - 25;
+	game->balls[i]->rect.y = game->cursor.y - 25;
+}
+
+int grabBall(ballsGame * game){
+	/*	 Finds next free ball	*/
+
+	int i = 0;
+	while(game->balls[i] != NULL && i < MAX_BALLS){
+		int *posx = &game->balls[i]->rect.x;
+		int *posy = &game->balls[i]->rect.y;
+		if(fabs(*posx + 25 - game->cursor.x) < 20 &&
+			fabs(*posy + 25 - game->cursor.y) < 20 ){
+				return i;
+		}
+		i++;
+	}
+	return -1;
+}
+
 void borderCheck(ballsGame * game, int i){
 	/*	 Pointers to x, y and speed	for ball */
 	float *velx = &game->balls[i]->speed.x;

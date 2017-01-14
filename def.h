@@ -55,7 +55,7 @@
 #define BLADE_SPEED 10.5
 
 /*	 Game modes // Cursors	*/
-enum {NORMAL, MAGNET, REPEL, BLADE, MAX_GAME_TYPES};
+enum {NORMAL, MAGNET, REPEL, BLADE, NEO, MAX_GAME_TYPES};
 
 /*	 Ball colors, for texture array index	*/
 enum {RED, YELLOW, BLUE, GREEN, SMILEY, PURPLE, DEVIL, MAX_BALL_ART};
@@ -91,7 +91,7 @@ typedef struct ballsGame{
 	TTF_Font *font;
 	int createdBalls;
 	int killedBalls;
-	/*	 Flexible struct member needs to be last.	*/
+	int grabbedBallIndex;
 	SDL_Texture * ballArt[MAX_BALL_ART];
 	int shieldFrame;
 	Uint64 ticker;
@@ -120,6 +120,8 @@ void avoidCursor(ballsGame * game, int i);
 void destroyBall(ballsGame * game, int i);
 void killBalls(ballsGame * game, int i);
 void flipBallSpeed(ballsGame * game, int i, bool direction);
+void freezeBalls(ballsGame * game, int i);
+int grabBall(ballsGame * game);
 
 /*	 draw.c	*/
 bool renderGame(ballsGame * game);

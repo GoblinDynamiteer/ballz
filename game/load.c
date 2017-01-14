@@ -21,7 +21,7 @@ bool loadGame(ballsGame * game){
 
 	/*	 Loads the ball texture	*/
 	/*	index: RED, YELLOW, BLUE, GREEN, SMILEY, PURPLE, DEVIL */
-	char * imageFiles[] = {
+	const char * imageFiles[] = {
 			"art/ball_red.png",
 			"art/ball_yellow.png",
 			"art/ball_blue.png",
@@ -40,19 +40,33 @@ bool loadGame(ballsGame * game){
 	}
 
 	/*	Load cursor texture and set rectangle	*/
-	/*	index: NORMAL, MAGNET, REPEL */
-	char * imageFilesCursor[] = {
-			"art/cursor.png",
-			"art/cursor_magnet.png",
-			"art/cursor_rep.png",
-			"art/cursor_blade.png",
-			"art/cursor.png"
+	/*	index: NORMAL, MAGNET, REPEL, BLADE, NEO */
+	const char * imageFilesCursor[] = {
+		"art/cursor.png",
+		"art/cursor_magnet.png",
+		"art/cursor_rep.png",
+		"art/cursor_blade.png",
+		"art/cursor.png"
+	};
+
+	const char * tempName[] = {
+		"NORMAL",
+		"MAGNET",
+		"REPEL",
+		"BLADE",
+		"NEO"
 	};
 
 	for(int i = 0; i< MAX_GAME_TYPES; i++){
 		surface = IMG_Load(imageFilesCursor[i]);
 		game->cursorArt[i] = SDL_CreateTextureFromSurface(
 				game->renderer, surface);
+
+		/*	 Copy mode names to char pointer array	*/
+		int len = strlen(tempName[i]);
+		game->modeText[i] = malloc(sizeof(char)*len+1);
+		strcpy(game->modeText[i], tempName[i]);
+		strcat(game->modeText[i], "\0");
 	}
 
 	/*	 Load shield bubble	*/

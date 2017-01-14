@@ -22,6 +22,8 @@ bool renderGame(ballsGame * game){
 	drawText(game, displayText, 10, 10);
 	sprintf(displayText, "Killed balls: %d", game->killedBalls);
 	drawText(game, displayText, 10, 10 + FONT_SIZE + 2);
+	sprintf(displayText, "Mode: %s", game->modeText[game->mode]);
+	drawText(game, displayText, WIN_WIDTH - 350, 10);
 
 	/*	 Presents render	*/
 	SDL_RenderPresent(game->renderer);

@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
+#include <string.h>
 
 #include "SDL.h"
 #include "SDL_image.h"
@@ -95,6 +96,7 @@ typedef struct ballsGame{
 	SDL_Texture * ballArt[MAX_BALL_ART];
 	int shieldFrame;
 	Uint64 ticker;
+	char * modeText[MAX_GAME_TYPES];
 }ballsGame;
 
 

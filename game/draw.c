@@ -29,7 +29,7 @@ bool renderGame(ballsGame * game){
 }
 
 /*	 Draw text	*/
-void drawText(ballsGame * game, char * text, int pos){
+void drawText(ballsGame * game, char * text, int posx, int posy){
 	SDL_Surface *textSurface;
 	SDL_Color color = {0,0,0};
 	textSurface = TTF_RenderText_Solid(
@@ -38,7 +38,7 @@ void drawText(ballsGame * game, char * text, int pos){
 	SDL_Texture * textTexture = SDL_CreateTextureFromSurface(
 		game->renderer, textSurface
 	);
-	SDL_Rect textRect = {10, FONT_SIZE * pos + 2, 0, 0};
+	SDL_Rect textRect = {posx, posy, 0, 0};
 	SDL_QueryTexture(textTexture, NULL, NULL, &textRect.w, &textRect.h);
 	SDL_RenderCopy(game->renderer, textTexture, NULL, &textRect);
 

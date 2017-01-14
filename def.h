@@ -127,7 +127,7 @@ int grabBall(ballsGame * game);
 bool renderGame(ballsGame * game);
 void renderCursor(ballsGame * game);
 void renderBalls(ballsGame * game);
-void drawText(ballsGame * game, char * text, int pos);
+void drawText(ballsGame * game, char * text, int posx, int posy);
 void drawShield(ballsGame * game);
 
 

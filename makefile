@@ -1,4 +1,4 @@
-TARGET = ballz.exe
+TARGET = ballz_game
 LIBS = -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf
 CC = gcc
 CFLAGS = -g -Wall
@@ -10,7 +10,7 @@ ballz:
 
 clean:
 	-rm -f *.o
-	-rm -f $(TARGET)
+	-rm -f $(TARGET).*
 	
 run:
-	$(TARGET)
+	.\$(TARGET)

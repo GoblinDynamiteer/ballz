@@ -46,7 +46,7 @@ bool loadGame(ballsGame * game){
 		"art/cursor_magnet.png",
 		"art/cursor_rep.png",
 		"art/cursor_blade.png",
-		"art/cursor.png"
+		"art/cursor_neo.png"
 	};
 
 	const char * tempName[] = {

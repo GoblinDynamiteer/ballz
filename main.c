@@ -9,19 +9,19 @@
 
 int main(int argc, char *argv[])
 {
-    /*     Init SDL and SDL subsystems    */
+    /* Init SDL and SDL subsystems    */
     SDL_Init(SDL_INIT_EVERYTHING);
     IMG_Init(IMG_INIT_PNG);
     TTF_Init();
 
-    /*     Hide cursor    */
+    /* Hide cursor    */
     SDL_ShowCursor(SDL_DISABLE);
 
-    /*     Declare window and renderer    */
+    /* Declare window and renderer    */
     SDL_Window * window;
     SDL_Renderer * renderer;
 
-    /*     Create window    */
+    /* Create window    */
     window = SDL_CreateWindow(
         "Ballz!",
         SDL_WINDOWPOS_UNDEFINED,
@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
         0x00 // Use WIN_FLAGS for full screen
     );
 
-    /*     Create renderer    */
+    /* Create renderer    */
     renderer = SDL_CreateRenderer(
             window,
             -1,
@@ -39,12 +39,12 @@ int main(int argc, char *argv[])
     );
 
 
-    /*     Declare struct ballsGame    */
+    /* Declare struct ballsGame    */
     ballsGame ballsGame;
     ballsGame.window = window;
     ballsGame.renderer = renderer;
 
-    /*     Load game    */
+    /* Load game    */
     loadGame(&ballsGame);
 
     while(processEvent(&ballsGame)){
@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
         free(ballsGame.balls[i]);
     }
 
-    /*     Quit SDL    */
+    /* Quit SDL    */
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
     TTF_CloseFont(ballsGame.font);

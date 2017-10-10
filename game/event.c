@@ -43,6 +43,8 @@ bool processEvent(ballsGame * game){
 
     /*	 Gets mouse cursor position	*/
     Uint32 mouseState = SDL_GetMouseState(&game->cursor.x, &game->cursor.y);
+
+
     if(mouseState & SDL_BUTTON(SDL_BUTTON_RIGHT)){
         for(int i = 0; i< BALLS_PER_SPRAY; i++){
             addBall(game, game->cursor.x, game->cursor.y);

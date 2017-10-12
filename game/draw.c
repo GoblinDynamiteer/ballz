@@ -7,7 +7,8 @@
  *      Author: kampe_000
  */
 
-bool renderGame(ballsGame * game){
+bool renderGame(ballsGame * game)
+{
     /* Sets background color    */
     SDL_SetRenderDrawColor(game->renderer, 102, 204, 204, 255);
     SDL_RenderClear(game->renderer);
@@ -31,15 +32,19 @@ bool renderGame(ballsGame * game){
 }
 
 /* Draw text    */
-void drawText(ballsGame * game, char * text, int posx, int posy){
+void drawText(ballsGame * game, char * text, int posx, int posy)
+{
     SDL_Surface *textSurface;
     SDL_Color color = {0,0,0};
+
     textSurface = TTF_RenderText_Solid(
         game->font, text, color
     );
+
     SDL_Texture * textTexture = SDL_CreateTextureFromSurface(
         game->renderer, textSurface
     );
+
     SDL_Rect textRect = {posx, posy, 0, 0};
     SDL_QueryTexture(textTexture, NULL, NULL, &textRect.w, &textRect.h);
     SDL_RenderCopy(game->renderer, textTexture, NULL, &textRect);
@@ -47,16 +52,22 @@ void drawText(ballsGame * game, char * text, int posx, int posy){
     SDL_FreeSurface(textSurface);
 }
 
-void renderBalls(ballsGame * game){
+void renderBalls(ballsGame * game)
+{
     /* Draws balls    */
-    for(int i = 0; i< MAX_BALLS; i++){
-        if(!game->balls[i]){
+    for(int i = 0; i< MAX_BALLS; i++)
+    {
+        if(!game->balls[i])
+        {
             break;
         }
+
         if(!game->balls[i]->active){
             continue;
         }
+
         short color = game->balls[i]->color;
+
         SDL_RenderCopyEx(
             game->renderer,
             game->ballArt[color],
@@ -69,7 +80,8 @@ void renderBalls(ballsGame * game){
     }
 }
 
-void renderCursor(ballsGame * game){
+void renderCursor(ballsGame * game)
+{
     /* Draw mouse cursor    */
     SDL_Rect cursorRect;
 
@@ -85,15 +97,18 @@ void renderCursor(ballsGame * game){
     cursorRect.x = game->cursor.x - cursorRect.w / 2;
     cursorRect.y = game->cursor.y - cursorRect.h / 2;
 
-    if(game->mode == BLADE){
+    if(game->mode == BLADE)
+    {
         game->cursorAngle += BLADE_SPEED;
     }
 
-    else{
+    else
+    {
         game->cursorAngle = 0.0;
     }
 
-    if(game->mode == REPEL){
+    if(game->mode == REPEL)
+    {
         drawShield(game);
     }
 
@@ -109,7 +124,8 @@ void renderCursor(ballsGame * game){
 }
 
 /* Animates the forcefield shield    */
-void drawShield(ballsGame * game){
+void drawShield(ballsGame * game)
+{
     SDL_Rect shieldRect;
     SDL_Rect targetRect;
 

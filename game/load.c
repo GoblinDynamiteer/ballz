@@ -6,7 +6,8 @@
  */
 
 
-#include "..\def.h"
+#include "def.h"
+#include <stdlib.h>
 
 bool loadGame(ballsGame * game)
 {

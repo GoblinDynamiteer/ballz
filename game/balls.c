@@ -1,7 +1,7 @@
 #include "balls.h"
 #include "event.h"
 
-bool addBall(ballsGame * game, int x, int y)
+bool ball_add(ballsGame * game, int x, int y)
 {
     int i = 0;
 
@@ -24,8 +24,8 @@ bool addBall(ballsGame * game, int x, int y)
     game->balls[i]->rect.h = BALL_SIZE;
 
     /* Set random ball speed    */
-    game->balls[i]->speed.x = getRandomDirection();
-    game->balls[i]->speed.y = getRandomDirection();
+    game->balls[i]->speed.x = event_get_random_direction();
+    game->balls[i]->speed.y = event_get_random_direction();
 
     /* Set balls starting angle, for rotation    */
     game->balls[i]->angle = 0.0;
@@ -43,7 +43,7 @@ bool addBall(ballsGame * game, int x, int y)
     return 1;
 }
 
-void destroyBall(ballsGame * game, int i)
+void ball_destroy(ballsGame * game, int i)
 {
     game->balls[i]->active = 0;
 }
@@ -63,7 +63,7 @@ void accelBall(ballsGame * game, int i)
         }
 }
 
-void rotateBall(ballsGame * game, int i)
+void ball_rotate(ballsGame * game, int i)
 {
     game->balls[i]->angle += 1.6f;
 
@@ -73,7 +73,7 @@ void rotateBall(ballsGame * game, int i)
     }
 }
 
-void moveBall(ballsGame * game, int i)
+void ball_move(ballsGame * game, int i)
 {
     /* Pointers to x, y and speed    for ball */
     float *velx = &game->balls[i]->speed.x;
@@ -86,13 +86,13 @@ void moveBall(ballsGame * game, int i)
     *posy += *vely;
 }
 
-void freezeBalls(ballsGame * game, int i)
+void ball_freeze(ballsGame * game, int i)
 {
     game->balls[i]->rect.x = game->cursor.x - 25;
     game->balls[i]->rect.y = game->cursor.y - 25;
 }
 
-int grabBall(ballsGame * game)
+int ball_grab(ballsGame * game)
 {
     /* Finds next free ball    */
 
@@ -114,7 +114,7 @@ int grabBall(ballsGame * game)
     return -1;
 }
 
-void borderCheck(ballsGame * game, int i)
+void ball_border_check(ballsGame * game, int i)
 {
     /* Pointers to x, y and speed    for ball */
     float *velx = &game->balls[i]->speed.x;
@@ -148,7 +148,7 @@ void borderCheck(ballsGame * game, int i)
     }
 }
 
-void huntCursor(ballsGame * game, int i)
+void ball_hunt_cursor(ballsGame * game, int i)
 {
     /* Pointers to x, y and speed    for ball */
     int *posx = &game->balls[i]->rect.x;
@@ -157,15 +157,15 @@ void huntCursor(ballsGame * game, int i)
     /* Position balls nearer current cursor location    */
     /* Calculate distance    */
     double distance =
-            calculateDistance(
+            event_calculate_distance(
                     *posx, game->cursor.x,
                     *posy, game->cursor.y
                 );
 
     if(distance < MAG_RADIUS)
     {
-        game->balls[i]->speed.x = getRandomDirection();
-        game->balls[i]->speed.y = getRandomDirection();
+        game->balls[i]->speed.x = event_get_random_direction();
+        game->balls[i]->speed.y = event_get_random_direction();
         if(*posx != game->cursor.x)
         {
             *posx = (
@@ -187,11 +187,11 @@ void huntCursor(ballsGame * game, int i)
 
     else
     {
-        moveBall(game, i);
+        ball_move(game, i);
     }
 }
 
-void avoidCursor(ballsGame * game, int i)
+void ball_avoid_cursor(ballsGame * game, int i)
 {
     /* Pointers to x, y and speed    for ball */
     int *posx = &game->balls[i]->rect.x;
@@ -202,15 +202,15 @@ void avoidCursor(ballsGame * game, int i)
     /* Position balls away from current cursor location    */
     /* Calculate distance    */
     double distance =
-            calculateDistance(
+            event_calculate_distance(
                     *posx, game->cursor.x,
                     *posy, game->cursor.y
                 );
 
     if(distance < REPEL_RADIUS)
     {
-        flipBallSpeed(game, i, HORIZONTAL);
-        flipBallSpeed(game, i, VERTICAL);
+        ball_flip_direction(game, i, HORIZONTAL);
+        ball_flip_direction(game, i, VERTICAL);
 
         *posx = (
             *posx > game->cursor.x ?
@@ -227,12 +227,12 @@ void avoidCursor(ballsGame * game, int i)
 
     else
     {
-        moveBall(game, i);
+        ball_move(game, i);
     }
 }
 
 
-void killBalls(ballsGame * game, int i)
+void ball_kill_all(ballsGame * game, int i)
 {
     /* Pointers to x, y and speed    for ball */
     int *posx = &game->balls[i]->rect.x;
@@ -241,24 +241,24 @@ void killBalls(ballsGame * game, int i)
     /* Kill balls near cursor    */
     /* Calculate distance    */
     double distance =
-            calculateDistance(
+            event_calculate_distance(
                     *posx, game->cursor.x,
                     *posy, game->cursor.y
                 );
 
     if(distance < KILLSIZE)
     {
-        destroyBall(game, i);
+        ball_destroy(game, i);
         game->killedBalls++;
     }
 
     else
     {
-        moveBall(game, i);
+        ball_move(game, i);
     }
 }
 
-void flipBallSpeed(ballsGame * game, int i, bool direction)
+void ball_flip_direction(ballsGame * game, int i, bool direction)
 {
     if(direction == VERTICAL)
     {

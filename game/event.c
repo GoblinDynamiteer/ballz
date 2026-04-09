@@ -6,7 +6,7 @@
 
 
 /* Process game events */
-bool processEvent(ballsGame * game)
+bool event_process_events(ballsGame * game)
 {
     /* Event union */
     SDL_Event event;
@@ -36,18 +36,18 @@ bool processEvent(ballsGame * game)
                 {
                     if(game->mode == NORMAL)
                     {
-                        addBall(game, game->cursor.x, game->cursor.y);
+                        ball_add(game, game->cursor.x, game->cursor.y);
                     }
 
                     if(game->mode == NEO)
                     {
-                        game->grabbedBallIndex = grabBall(game);
+                        game->grabbedBallIndex = ball_grab(game);
                     }
                 }
                 break;
 
             case SDL_MOUSEWHEEL:
-                cycleGameMode(game, (event.wheel.y < 0));
+                event_cycle_game_mode(game, (event.wheel.y < 0));
                 break;
         }
     }
@@ -59,7 +59,7 @@ bool processEvent(ballsGame * game)
     {
         for(int i = 0; i< BALLS_PER_SPRAY; i++)
         {
-            addBall(game, game->cursor.x, game->cursor.y);
+            ball_add(game, game->cursor.x, game->cursor.y);
         }
     }
 
@@ -67,7 +67,7 @@ bool processEvent(ballsGame * game)
         game->mode == NEO &&
         game->grabbedBallIndex >= 0)
         {
-            freezeBalls(game, game->grabbedBallIndex);
+            ball_freeze(game, game->grabbedBallIndex);
         }
 
     /*	 Moves and rotate balls	*/
@@ -87,25 +87,25 @@ bool processEvent(ballsGame * game)
         switch(game->mode)
         {
             case NORMAL:
-                moveBall(game, i);
+                ball_move(game, i);
                 break;
             case MAGNET:
-                huntCursor(game, i);
+                ball_hunt_cursor(game, i);
                 break;
             case REPEL:
-                avoidCursor(game, i);
+                ball_avoid_cursor(game, i);
                 break;
             case BLADE:
-                killBalls(game, i);
+                ball_kill_all(game, i);
                 break;
             case NEO:
                 ;
                 break;
         }
 
-        rotateBall(game, i);
+        ball_rotate(game, i);
         accelBall(game, i);
-        borderCheck(game, i);
+        ball_border_check(game, i);
     }
 
     game->ticker++;
@@ -114,7 +114,7 @@ bool processEvent(ballsGame * game)
 }
 
 /*	 Uses distance formula	*/
-double calculateDistance(int x1, int x2, int y1, int y2)
+double event_calculate_distance(int x1, int x2, int y1, int y2)
 {
     double calc =
     sqrt(
@@ -126,7 +126,7 @@ double calculateDistance(int x1, int x2, int y1, int y2)
 }
 
 /* Generates a random direction (and speed) for new balls */
-float getRandomDirection(void)
+float event_get_random_direction(void)
 {
     float direction = (float)(rand() % 5)
         + (float)(rand() % 10) / 10.0f;
@@ -135,7 +135,7 @@ float getRandomDirection(void)
 }
 
 
-void cycleGameMode(ballsGame * game, bool cycle_direction)
+void event_cycle_game_mode(ballsGame * game, bool cycle_direction)
 {
     game->mode = (game->mode == MAX_GAME_TYPES -1 ) ?
     NORMAL : (cycle_direction ? game->mode + 1 : game->mode +1);

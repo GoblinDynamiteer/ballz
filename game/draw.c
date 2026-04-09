@@ -1,24 +1,24 @@
 #include "def.h"
 #include "draw.h"
 
-bool renderGame(ballsGame * game)
+bool draw_render_game(ballsGame * game)
 {
     /* Sets background color    */
     SDL_SetRenderDrawColor(game->renderer, 102, 204, 204, 255);
     SDL_RenderClear(game->renderer);
 
     /* Render balls and mouse cursor, order matters    */
-    renderBalls(game);
-    renderCursor(game);
+    draw_render_balls(game);
+    draw_render_cursor(game);
 
     /* Display text    */
     char displayText[80];
     sprintf(displayText, "Added balls: %d", game->createdBalls);
-    drawText(game, displayText, 10, 10);
+    draw_render_text(game, displayText, 10, 10);
     sprintf(displayText, "Killed balls: %d", game->killedBalls);
-    drawText(game, displayText, 10, 10 + FONT_SIZE + 2);
+    draw_render_text(game, displayText, 10, 10 + FONT_SIZE + 2);
     sprintf(displayText, "Mode: %s", game->modeText[game->mode]);
-    drawText(game, displayText, WIN_WIDTH - 350, 10);
+    draw_render_text(game, displayText, WIN_WIDTH - 350, 10);
 
     /* Presents render    */
     SDL_RenderPresent(game->renderer);
@@ -26,7 +26,7 @@ bool renderGame(ballsGame * game)
 }
 
 /* Draw text    */
-void drawText(ballsGame * game, char * text, int posx, int posy)
+void draw_render_text(ballsGame * game, char * text, int posx, int posy)
 {
     SDL_Surface *textSurface;
     SDL_Color color = {0,0,0};
@@ -46,7 +46,7 @@ void drawText(ballsGame * game, char * text, int posx, int posy)
     SDL_FreeSurface(textSurface);
 }
 
-void renderBalls(ballsGame * game)
+void draw_render_balls(ballsGame * game)
 {
     /* Draws balls    */
     for(int i = 0; i< MAX_BALLS; i++)
@@ -74,7 +74,7 @@ void renderBalls(ballsGame * game)
     }
 }
 
-void renderCursor(ballsGame * game)
+void draw_render_cursor(ballsGame * game)
 {
     /* Draw mouse cursor    */
     SDL_Rect cursorRect;
@@ -103,7 +103,7 @@ void renderCursor(ballsGame * game)
 
     if(game->mode == REPEL)
     {
-        drawShield(game);
+        draw_render_shield(game);
     }
 
     SDL_RenderCopyEx(
@@ -118,7 +118,7 @@ void renderCursor(ballsGame * game)
 }
 
 /* Animates the forcefield shield    */
-void drawShield(ballsGame * game)
+void draw_render_shield(ballsGame * game)
 {
     SDL_Rect shieldRect;
     SDL_Rect targetRect;

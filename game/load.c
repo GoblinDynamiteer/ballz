@@ -1,13 +1,10 @@
-/*
- * load.c
- *
- *  Created on: 8 jan. 2017
- *      Author: kampe_000
- */
+#include <stdlib.h>
+#include <time.h>
 
+#include <SDL_image.h>
 
 #include "def.h"
-#include <stdlib.h>
+
 
 bool loadGame(ballsGame * game)
 {

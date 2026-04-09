@@ -20,7 +20,7 @@ add_executable(ballz
     game/load.c
 )
 
-target_include_directories(ballz PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(ballz PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} game/)
 target_compile_definitions(
     ballz
     PRIVATE BALLZ_ASSET_DIR="${CMAKE_CURRENT_SOURCE_DIR}/"

@@ -1,11 +1,5 @@
 #include "def.h"
-
-/*
- * draw.c
- *
- *  Created on: 8 jan. 2017
- *      Author: kampe_000
- */
+#include "draw.h"
 
 bool renderGame(ballsGame * game)
 {

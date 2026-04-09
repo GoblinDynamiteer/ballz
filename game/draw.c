@@ -1,8 +1,7 @@
 #include "def.h"
 #include "draw.h"
 
-bool draw_render_game(ballsGame * game)
-{
+bool draw_render_game(ballsGame *game) {
     /* Sets background color    */
     SDL_SetRenderDrawColor(game->renderer, 102, 204, 204, 255);
     SDL_RenderClear(game->renderer);
@@ -26,18 +25,13 @@ bool draw_render_game(ballsGame * game)
 }
 
 /* Draw text    */
-void draw_render_text(ballsGame * game, char * text, int posx, int posy)
-{
+void draw_render_text(ballsGame *game, char *text, int posx, int posy) {
     SDL_Surface *textSurface;
-    SDL_Color color = {0,0,0};
+    SDL_Color color = {0, 0, 0, 255};
 
-    textSurface = TTF_RenderText_Solid(
-        game->font, text, color
-    );
+    textSurface = TTF_RenderText_Solid(game->font, text, color);
 
-    SDL_Texture * textTexture = SDL_CreateTextureFromSurface(
-        game->renderer, textSurface
-    );
+    SDL_Texture *textTexture = SDL_CreateTextureFromSurface(game->renderer, textSurface);
 
     SDL_Rect textRect = {posx, posy, 0, 0};
     SDL_QueryTexture(textTexture, NULL, NULL, &textRect.w, &textRect.h);
@@ -46,98 +40,64 @@ void draw_render_text(ballsGame * game, char * text, int posx, int posy)
     SDL_FreeSurface(textSurface);
 }
 
-void draw_render_balls(ballsGame * game)
-{
+void draw_render_balls(ballsGame *game) {
     /* Draws balls    */
-    for(int i = 0; i< MAX_BALLS; i++)
-    {
-        if(!game->balls[i])
-        {
+    for (int i = 0; i < MAX_BALLS; i++) {
+        if (!game->balls[i]) {
             break;
         }
 
-        if(!game->balls[i]->active){
+        if (!game->balls[i]->active) {
             continue;
         }
 
         short color = game->balls[i]->color;
 
-        SDL_RenderCopyEx(
-            game->renderer,
-            game->ballArt[color],
-            NULL,
-            &game->balls[i]->rect,
-            game->balls[i]->angle,
-            NULL,
-            SDL_FLIP_NONE
-        );
+        SDL_RenderCopyEx(game->renderer, game->ballArt[color], NULL, &game->balls[i]->rect,
+                         game->balls[i]->angle, NULL, SDL_FLIP_NONE);
     }
 }
 
-void draw_render_cursor(ballsGame * game)
-{
+void draw_render_cursor(ballsGame *game) {
     /* Draw mouse cursor    */
     SDL_Rect cursorRect;
 
     /* Gets width and height from texture    */
-    SDL_QueryTexture(
-        game->cursorArt[game->mode],
-        NULL,
-        NULL,
-        &cursorRect.w,
-        &cursorRect.h
-    );
+    SDL_QueryTexture(game->cursorArt[game->mode], NULL, NULL, &cursorRect.w, &cursorRect.h);
 
     cursorRect.x = game->cursor.x - cursorRect.w / 2;
     cursorRect.y = game->cursor.y - cursorRect.h / 2;
 
-    if(game->mode == BLADE)
-    {
+    if (game->mode == BLADE) {
         game->cursorAngle += BLADE_SPEED;
     }
 
-    else
-    {
+    else {
         game->cursorAngle = 0.0;
     }
 
-    if(game->mode == REPEL)
-    {
+    if (game->mode == REPEL) {
         draw_render_shield(game);
     }
 
-    SDL_RenderCopyEx(
-        game->renderer,
-        game->cursorArt[game->mode],
-        NULL,
-        &cursorRect,
-        game->cursorAngle,
-        NULL,
-        SDL_FLIP_NONE
-    );
+    SDL_RenderCopyEx(game->renderer, game->cursorArt[game->mode], NULL, &cursorRect,
+                     game->cursorAngle, NULL, SDL_FLIP_NONE);
 }
 
 /* Animates the forcefield shield    */
-void draw_render_shield(ballsGame * game)
-{
+void draw_render_shield(ballsGame *game) {
     SDL_Rect shieldRect;
     SDL_Rect targetRect;
 
     /* Gets width and height from texture    */
-    SDL_QueryTexture(
-        game->shield,
-        NULL,
-        NULL,
-        &shieldRect.w,
-        &shieldRect.h
-    );
+    SDL_QueryTexture(game->shield, NULL, NULL, &shieldRect.w, &shieldRect.h);
 
     /* Divide with by number of frames in animation    */
     shieldRect.w /= 6;
     shieldRect.y = 0;
 
-    if(game->ticker % 2 == 0){
-        if(game->shieldFrame++ > 6){
+    if (game->ticker % 2 == 0) {
+        if (game->shieldFrame++ > 6) {
             game->shieldFrame = 0;
         }
     }
@@ -149,11 +109,5 @@ void draw_render_shield(ballsGame * game)
     targetRect.x = game->cursor.x - targetRect.w / 2;
     targetRect.y = game->cursor.y - targetRect.h / 2;
 
-    SDL_RenderCopy(
-        game->renderer,
-        game->shield,
-        &shieldRect,
-        &targetRect
-    );
-
+    SDL_RenderCopy(game->renderer, game->shield, &shieldRect, &targetRect);
 }

@@ -12,9 +12,10 @@
 #include "event.h"
 #include "load.h"
 
+int main(int argc, char *argv[]) {
+    (void)argc;
+    (void)argv;
 
-int main(int argc, char *argv[])
-{
     /* Init SDL and SDL subsystems    */
     SDL_Init(SDL_INIT_EVERYTHING);
     IMG_Init(IMG_INIT_PNG);
@@ -24,26 +25,17 @@ int main(int argc, char *argv[])
     SDL_ShowCursor(SDL_DISABLE);
 
     /* Declare window and renderer    */
-    SDL_Window * window;
-    SDL_Renderer * renderer;
+    SDL_Window *window;
+    SDL_Renderer *renderer;
 
     /* Create window    */
-    window = SDL_CreateWindow(
-        "Ballz!",
-        SDL_WINDOWPOS_UNDEFINED,
-        SDL_WINDOWPOS_UNDEFINED,
-        WIN_WIDTH,
-        WIN_HEIGHT,
-        0x00 // Use WIN_FLAGS for full screen
+    window = SDL_CreateWindow("Ballz!", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIN_WIDTH,
+                              WIN_HEIGHT,
+                              0x00 // Use WIN_FLAGS for full screen
     );
 
     /* Create renderer    */
-    renderer = SDL_CreateRenderer(
-            window,
-            -1,
-            REN_FLAGS
-    );
-
+    renderer = SDL_CreateRenderer(window, -1, REN_FLAGS);
 
     /* Declare struct ballsGame    */
     ballsGame ballsGame;
@@ -53,13 +45,12 @@ int main(int argc, char *argv[])
     /* Load game    */
     load_game(&ballsGame);
 
-    while(event_process_events(&ballsGame)){
+    while (event_process_events(&ballsGame)) {
         draw_render_game(&ballsGame);
-        SDL_Delay(1000/60);
+        SDL_Delay(1000 / 60);
     }
 
-
-    for(int i = 0; i < MAX_BALLS; i++){
+    for (int i = 0; i < MAX_BALLS; i++) {
         free(ballsGame.balls[i]);
     }
 
@@ -71,17 +62,17 @@ int main(int argc, char *argv[])
     window = NULL;
     ballsGame.font = NULL;
 
-    for(int i = 0; i < MAX_BALL_ART; i++){
+    for (int i = 0; i < MAX_BALL_ART; i++) {
         SDL_DestroyTexture(ballsGame.ballArt[i]);
         ballsGame.ballArt[i] = NULL;
     }
 
-    for(int i = 0; i< MAX_GAME_TYPES; i++){
+    for (int i = 0; i < MAX_GAME_TYPES; i++) {
         SDL_DestroyTexture(ballsGame.cursorArt[i]);
         ballsGame.cursorArt[i] = NULL;
     }
 
-    //Quit SDL subsystems
+    // Quit SDL subsystems
     TTF_Quit();
     IMG_Quit();
     SDL_Quit();

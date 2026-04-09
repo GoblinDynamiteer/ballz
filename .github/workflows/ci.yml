@@ -16,6 +16,8 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y \
+            clang-format \
+            clang-tidy \
             cmake \
             ninja-build \
             pkg-config \
@@ -28,3 +30,9 @@ jobs:
 
       - name: Build
         run: cmake --build build
+
+      - name: Check formatting
+        run: cmake --build build --target format-check
+
+      - name: Run clang-tidy
+        run: cmake --build build --target lint

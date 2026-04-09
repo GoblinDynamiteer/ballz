@@ -8,6 +8,14 @@ cmake --build build
 ./build/ballz
 ```
 
+## Linting
+
+```bash
+cmake --build build --target format
+cmake --build build --target format-check
+cmake --build build --target lint
+```
+
 ---
 
 *SDL / Geometry practice.* 

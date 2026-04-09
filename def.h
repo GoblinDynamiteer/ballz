@@ -28,12 +28,12 @@
 #define BALL_SIZE 50
 
 /* Ball movement speed & acceleration    */
-#define MAXSPEED 15.0
-#define ACC 1.005
+#define MAXSPEED 15.0f
+#define ACC 1.005f
 
 /* Radius for magnet and repel    */
 #define MAG_RADIUS 500
-#define MAGSTR 6.5
+#define MAGSTR 6.5f
 #define REPEL_RADIUS 350
 
 #define KILLSIZE 45
@@ -43,39 +43,39 @@
 
 /* Cursor stuff    */
 /* Blade mode rotation    */
-#define BLADE_SPEED 10.5
+#define BLADE_SPEED 10.5f
 
 /* Game modes // Cursors    */
-enum {NORMAL, MAGNET, REPEL, BLADE, NEO, MAX_GAME_TYPES};
+enum { NORMAL, MAGNET, REPEL, BLADE, NEO, MAX_GAME_TYPES };
 
 /* Ball colors, for texture array index    */
-enum {RED, YELLOW, BLUE, GREEN, SMILEY, PURPLE, DEVIL, MAX_BALL_ART};
+enum { RED, YELLOW, BLUE, GREEN, SMILEY, PURPLE, DEVIL, MAX_BALL_ART };
 
-enum {VERTICAL, HORIZONTAL};
+enum { VERTICAL, HORIZONTAL };
 
 /* Struct definitions    */
-typedef struct velocity{
+typedef struct velocity {
     float x, y;
-}velocity;
+} velocity;
 
-typedef struct pos{
+typedef struct pos {
     int x, y;
-}position;
+} position;
 
-typedef struct ball{
+typedef struct ball {
     short color;
     bool active;
     SDL_Rect rect;
     velocity speed;
     double angle;
-}ball;
+} ball;
 
-typedef struct ballsGame{
-    SDL_Window * window;
-    SDL_Renderer * renderer;
-    ball * balls[MAX_BALLS];
-    SDL_Texture * cursorArt[MAX_GAME_TYPES];
-    SDL_Texture * shield;
+typedef struct ballsGame {
+    SDL_Window *window;
+    SDL_Renderer *renderer;
+    ball *balls[MAX_BALLS];
+    SDL_Texture *cursorArt[MAX_GAME_TYPES];
+    SDL_Texture *shield;
     position cursor;
     double cursorAngle;
     short mode;
@@ -83,11 +83,10 @@ typedef struct ballsGame{
     int createdBalls;
     int killedBalls;
     int grabbedBallIndex;
-    SDL_Texture * ballArt[MAX_BALL_ART];
+    SDL_Texture *ballArt[MAX_BALL_ART];
     int shieldFrame;
     Uint64 ticker;
-    char * modeText[MAX_GAME_TYPES];
-}ballsGame;
-
+    char *modeText[MAX_GAME_TYPES];
+} ballsGame;
 
 #endif /* DEF_H_ */

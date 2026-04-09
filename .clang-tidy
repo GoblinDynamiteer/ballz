@@ -1,0 +1,9 @@
+Checks: >
+  clang-analyzer-*,
+  bugprone-*,
+  -bugprone-easily-swappable-parameters,
+  -bugprone-reserved-identifier
+WarningsAsErrors: ''
+HeaderFilterRegex: '^(def\.h|main\.c|game/.*)$'
+FormatStyle: file
+UseColor: false

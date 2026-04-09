@@ -6,7 +6,7 @@
 #include "def.h"
 
 
-bool loadGame(ballsGame * game)
+bool load_game(ballsGame * game)
 {
 
     /* Random seed */

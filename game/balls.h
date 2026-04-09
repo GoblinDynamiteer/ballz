@@ -3,17 +3,17 @@
 
 #include "def.h"
 
-bool addBall(ballsGame * game, int x, int y);
-void moveBall(ballsGame * game, int i);
-void rotateBall(ballsGame * game, int i);
+bool ball_add(ballsGame * game, int x, int y);
+void ball_move(ballsGame * game, int i);
+void ball_rotate(ballsGame * game, int i);
 void accelBall(ballsGame * game, int i);
-void borderCheck(ballsGame * game, int i);
-void huntCursor(ballsGame * game, int i);
-void avoidCursor(ballsGame * game, int i);
-void destroyBall(ballsGame * game, int i);
-void killBalls(ballsGame * game, int i);
-void flipBallSpeed(ballsGame * game, int i, bool direction);
-void freezeBalls(ballsGame * game, int i);
-int grabBall(ballsGame * game);
+void ball_border_check(ballsGame * game, int i);
+void ball_hunt_cursor(ballsGame * game, int i);
+void ball_avoid_cursor(ballsGame * game, int i);
+void ball_destroy(ballsGame * game, int i);
+void ball_kill_all(ballsGame * game, int i);
+void ball_flip_direction(ballsGame * game, int i, bool direction);
+void ball_freeze(ballsGame * game, int i);
+int ball_grab(ballsGame * game);
 
 #endif //BALLZ_BALLS_H

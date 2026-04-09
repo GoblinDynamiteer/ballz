@@ -4,11 +4,10 @@
 
 #include "def.h"
 
-bool renderGame(ballsGame * game);
-void renderCursor(ballsGame * game);
-void renderBalls(ballsGame * game);
-void drawText(ballsGame * game, char * text, int posx, int posy);
-void drawShield(ballsGame * game);
-
+bool draw_render_game(ballsGame * game);
+void draw_render_cursor(ballsGame * game);
+void draw_render_balls(ballsGame * game);
+void draw_render_text(ballsGame * game, char * text, int posx, int posy);
+void draw_render_shield(ballsGame * game);
 
 #endif //BALLZ_DRAW_H

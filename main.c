@@ -8,6 +8,9 @@
 #include <SDL_image.h>
 
 #include "def.h"
+#include "draw.h"
+#include "event.h"
+#include "load.h"
 
 
 int main(int argc, char *argv[])
@@ -48,10 +51,10 @@ int main(int argc, char *argv[])
     ballsGame.renderer = renderer;
 
     /* Load game    */
-    loadGame(&ballsGame);
+    load_game(&ballsGame);
 
-    while(processEvent(&ballsGame)){
-        renderGame(&ballsGame);
+    while(event_process_events(&ballsGame)){
+        draw_render_game(&ballsGame);
         SDL_Delay(1000/60);
     }
 

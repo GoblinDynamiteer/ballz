@@ -3,6 +3,6 @@
 
 #include "def.h"
 
-bool loadGame(ballsGame * game);
+bool load_game(ballsGame * game);
 
 #endif //BALLZ_LOAD_H

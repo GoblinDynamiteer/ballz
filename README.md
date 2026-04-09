@@ -1,5 +1,13 @@
 #SDL Ballz
 
+## Build
+
+```bash
+cmake -S . -B build
+cmake --build build
+./build/ballz
+```
+
 ---
 
 *SDL / Geometry practice.* 

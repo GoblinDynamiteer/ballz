@@ -1,11 +1,5 @@
-/*
- * balls.c
- *
- *  Created on: 8 jan. 2017
- *      Author: kampe_000
- */
-
-#include "def.h"
+#include "balls.h"
+#include "event.h"
 
 bool addBall(ballsGame * game, int x, int y)
 {

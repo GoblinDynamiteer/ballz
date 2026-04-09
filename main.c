@@ -5,7 +5,10 @@
  *      Author: kampe_000
  */
 
+#include <SDL_image.h>
+
 #include "def.h"
+
 
 int main(int argc, char *argv[])
 {

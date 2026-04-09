@@ -1,23 +1,9 @@
-/*
- * def.h
- *
- *  Created on: 8 jan. 2017
- *      Author: kampe_000
- */
-
-/* Include guard    */
 #ifndef DEF_H_
 #define DEF_H_
 
-#include <stdio.h>
 #include <stdbool.h>
-#include <stdlib.h>
-#include <time.h>
-#include <math.h>
-#include <string.h>
 
 #include "SDL.h"
-#include "SDL_image.h"
 #include "SDL_ttf.h"
 
 #ifndef BALLZ_ASSET_DIR
@@ -102,39 +88,6 @@ typedef struct ballsGame{
     Uint64 ticker;
     char * modeText[MAX_GAME_TYPES];
 }ballsGame;
-
-
-/* Function definitions    */
-
-/* load.c    */
-bool loadGame(ballsGame * game);
-
-/* event.c    */
-bool processEvent(ballsGame * game);
-float getRandomDirection(void);
-void cycleGameMode(ballsGame * game, bool cycle_direction);
-double calculateDistance(int x1, int x2, int y1, int y2);
-
-/* balls.c    */
-bool addBall(ballsGame * game, int x, int y);
-void moveBall(ballsGame * game, int i);
-void rotateBall(ballsGame * game, int i);
-void accelBall(ballsGame * game, int i);
-void borderCheck(ballsGame * game, int i);
-void huntCursor(ballsGame * game, int i);
-void avoidCursor(ballsGame * game, int i);
-void destroyBall(ballsGame * game, int i);
-void killBalls(ballsGame * game, int i);
-void flipBallSpeed(ballsGame * game, int i, bool direction);
-void freezeBalls(ballsGame * game, int i);
-int grabBall(ballsGame * game);
-
-/* draw.c    */
-bool renderGame(ballsGame * game);
-void renderCursor(ballsGame * game);
-void renderBalls(ballsGame * game);
-void drawText(ballsGame * game, char * text, int posx, int posy);
-void drawShield(ballsGame * game);
 
 
 #endif /* DEF_H_ */

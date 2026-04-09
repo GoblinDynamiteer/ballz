@@ -1,6 +1,9 @@
-#include "def.h"
-
 #include <math.h>
+
+#include "def.h"
+#include "balls.h"
+#include "event.h"
+
 
 /* Process game events */
 bool processEvent(ballsGame * game)

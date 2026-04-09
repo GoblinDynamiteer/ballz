@@ -25,13 +25,13 @@ bool loadGame(ballsGame * game)
     /* Loads the ball texture */
     /* index: RED, YELLOW, BLUE, GREEN, SMILEY, PURPLE, DEVIL */
     const char * imageFiles[] = {
-            "art/ball_red.png",
-            "art/ball_yellow.png",
-            "art/ball_blue.png",
-            "art/ball_green.png",
-            "art/ball_smiley.png",
-            "art/ball_purple.png",
-            "art/ball_devil.png"
+            BALLZ_ASSET_DIR "art/ball_red.png",
+            BALLZ_ASSET_DIR "art/ball_yellow.png",
+            BALLZ_ASSET_DIR "art/ball_blue.png",
+            BALLZ_ASSET_DIR "art/ball_green.png",
+            BALLZ_ASSET_DIR "art/ball_smiley.png",
+            BALLZ_ASSET_DIR "art/ball_purple.png",
+            BALLZ_ASSET_DIR "art/ball_devil.png"
     };
 
     SDL_Surface * surface = NULL;
@@ -46,11 +46,11 @@ bool loadGame(ballsGame * game)
     /* Load cursor texture and set rectangle */
     /* index: NORMAL, MAGNET, REPEL, BLADE, NEO */
     const char * imageFilesCursor[] = {
-        "art/cursor.png",
-        "art/cursor_magnet.png",
-        "art/cursor_rep.png",
-        "art/cursor_blade.png",
-        "art/cursor_neo.png"
+        BALLZ_ASSET_DIR "art/cursor.png",
+        BALLZ_ASSET_DIR "art/cursor_magnet.png",
+        BALLZ_ASSET_DIR "art/cursor_rep.png",
+        BALLZ_ASSET_DIR "art/cursor_blade.png",
+        BALLZ_ASSET_DIR "art/cursor_neo.png"
     };
 
     const char * tempName[] = {
@@ -76,7 +76,7 @@ bool loadGame(ballsGame * game)
     }
 
     /* Load shield bubble */
-    surface = IMG_Load("art/cursor_shield_anim.png");
+    surface = IMG_Load(BALLZ_ASSET_DIR "art/cursor_shield_anim.png");
     game->shield = SDL_CreateTextureFromSurface(
             game->renderer, surface);
 
@@ -90,7 +90,10 @@ bool loadGame(ballsGame * game)
     game->killedBalls = 0;
     game->shieldFrame = 0;
 
-    game->font = TTF_OpenFont("font/joystix_monospace.ttf", FONT_SIZE);
+    game->font = TTF_OpenFont(
+        BALLZ_ASSET_DIR "font/joystix_monospace.ttf",
+        FONT_SIZE
+    );
 
     return 1;
 }

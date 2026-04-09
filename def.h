@@ -20,6 +20,10 @@
 #include "SDL_image.h"
 #include "SDL_ttf.h"
 
+#ifndef BALLZ_ASSET_DIR
+#define BALLZ_ASSET_DIR ""
+#endif
+
 /* Window dimensions, FULL HD!    */
 #define WIN_WIDTH 1920
 #define WIN_HEIGHT 1080

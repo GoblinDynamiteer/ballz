@@ -5,7 +5,7 @@
  *      Author: kampe_000
  */
 
-#include "..\def.h"
+#include "def.h"
 
 bool addBall(ballsGame * game, int x, int y)
 {

@@ -1,4 +1,6 @@
-#include "..\def.h"
+#include "def.h"
+
+#include <math.h>
 
 /* Process game events */
 bool processEvent(ballsGame * game)

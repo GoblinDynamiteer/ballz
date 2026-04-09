@@ -1,33 +1,38 @@
-TARGET = ballz_demo
-LIBS = -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf
-CC = gcc
-SRC_EXT = c
-OBJ_EXT = o
-CFLAGS = -g -Wall
-SUBDIR = game
-HEADER = def.h
-SRC = $(wildcard *.$(SRC_EXT)) $(wildcard $(SUBDIR)/*.$(SRC_EXT))
-OBJ = $(SRC:.$(SRC_EXT)=.$(OBJ_EXT))
+TARGET  := ballz_demo
+CC      := gcc
+SUBDIR  := game
 
-#Remove executable -> build -> run
-all: cleantarget link run
+SRC     := $(wildcard *.$(SRC_EXT)) $(wildcard $(SUBDIR)/*.$(SRC_EXT))
+# (or just hardcode SRC_EXT = c)
+SRC_EXT := c
+OBJ_EXT := o
 
-link: $(OBJ)
-	$(CC) $(OBJ) -o $(TARGET) $(LIBS)
+SRC     := $(wildcard *.$(SRC_EXT)) $(wildcard $(SUBDIR)/*.$(SRC_EXT))
+OBJ     := $(SRC:.$(SRC_EXT)=.$(OBJ_EXT))
 
-#Compile object files from sources if needed
-$(OBJ) : $(HEADER)
+CFLAGS  := -g -Wall -I. $(shell sdl2-config --cflags)
+LDLIBS  := -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lm
+LDFLAGS := $(shell sdl2-config --libs)
 
-#Remove object files and executable
-clean:
-	-rm -f *.$(OBJ_EXT)
-	-rm -f $(SUBDIR)/*.$(OBJ_EXT)
-	-rm -f $(TARGET).*
+.PHONY: all clean run cleantarget link
 
-#Remove executable
-cleantarget:
-		-rm -f $(TARGET).*
+all: $(TARGET)
 
-#Run executable
+$(TARGET): $(OBJ)
+	$(CC) $(OBJ) -o $@ $(LDFLAGS) $(LDLIBS)
+
+# Compile .c -> .o
+%.o: %.c def.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
 run: $(TARGET)
-	.\$(TARGET)
+	./$(TARGET)
+
+clean:
+	rm -f $(OBJ) $(TARGET)
+
+cleantarget:
+	rm -f $(TARGET)
+
+# optional: keep "link" target if you want the old name
+link: $(TARGET)

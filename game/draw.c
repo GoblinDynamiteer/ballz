@@ -1,7 +1,7 @@
 #include "def.h"
 #include "draw.h"
 
-bool draw_render_game(ballsGame *game) {
+bool draw_render_game(Game *game) {
     /* Sets background color    */
     SDL_SetRenderDrawColor(game->renderer, 102, 204, 204, 255);
     SDL_RenderClear(game->renderer);
@@ -17,7 +17,7 @@ bool draw_render_game(ballsGame *game) {
     sprintf(displayText, "Killed balls: %d", game->killedBalls);
     draw_render_text(game, displayText, 10, 10 + FONT_SIZE + 2);
     sprintf(displayText, "Mode: %s", game->modeText[game->mode]);
-    draw_render_text(game, displayText, WIN_WIDTH - 350, 10);
+    draw_render_text(game, displayText, WINDOW_WIDTH - 350, 10);
 
     /* Presents render    */
     SDL_RenderPresent(game->renderer);
@@ -25,7 +25,7 @@ bool draw_render_game(ballsGame *game) {
 }
 
 /* Draw text    */
-void draw_render_text(ballsGame *game, char *text, int posx, int posy) {
+void draw_render_text(Game *game, char *text, int posx, int posy) {
     SDL_Surface *textSurface;
     SDL_Color color = {0, 0, 0, 255};
 
@@ -40,7 +40,7 @@ void draw_render_text(ballsGame *game, char *text, int posx, int posy) {
     SDL_FreeSurface(textSurface);
 }
 
-void draw_render_balls(ballsGame *game) {
+void draw_render_balls(Game *game) {
     /* Draws balls    */
     for (int i = 0; i < MAX_BALLS; i++) {
         if (!game->balls[i]) {
@@ -58,7 +58,7 @@ void draw_render_balls(ballsGame *game) {
     }
 }
 
-void draw_render_cursor(ballsGame *game) {
+void draw_render_cursor(Game *game) {
     /* Draw mouse cursor    */
     SDL_Rect cursorRect;
 
@@ -85,7 +85,7 @@ void draw_render_cursor(ballsGame *game) {
 }
 
 /* Animates the forcefield shield    */
-void draw_render_shield(ballsGame *game) {
+void draw_render_shield(Game *game) {
     SDL_Rect shieldRect;
     SDL_Rect targetRect;
 

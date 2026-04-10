@@ -10,14 +10,6 @@
 #define BALLZ_ASSET_DIR ""
 #endif
 
-/* Window dimensions, FULL HD!    */
-#define WIN_WIDTH 1920
-#define WIN_HEIGHT 1080
-
-/* Flags for window    */
-#define WIN_FLAGS SDL_WINDOW_FULLSCREEN
-#define REN_FLAGS SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC
-
 /* Max balls on screen    */
 #define MAX_BALLS 5000
 
@@ -87,6 +79,6 @@ typedef struct ballsGame {
     int shieldFrame;
     Uint64 ticker;
     char *modeText[MAX_GAME_TYPES];
-} ballsGame;
+} Game;
 
 #endif /* DEF_H_ */

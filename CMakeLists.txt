@@ -7,6 +7,9 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+set(WINDOW_WIDTH 1920 CACHE STRING "Game window width")
+set(WINDOW_HEIGHT 1080 CACHE STRING "Game window height")
+
 set(BALLZ_SOURCES
     main.c
     game/balls.c
@@ -35,7 +38,10 @@ add_executable(ballz
 target_include_directories(ballz PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} game/)
 target_compile_definitions(
     ballz
-    PRIVATE BALLZ_ASSET_DIR="${CMAKE_CURRENT_SOURCE_DIR}/"
+    PRIVATE
+        BALLZ_ASSET_DIR="${CMAKE_CURRENT_SOURCE_DIR}/"
+        WINDOW_WIDTH=${WINDOW_WIDTH}
+        WINDOW_HEIGHT=${WINDOW_HEIGHT}
 )
 target_link_libraries(
     ballz

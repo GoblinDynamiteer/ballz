@@ -5,7 +5,7 @@
 #include "event.h"
 
 /* Process game events */
-bool event_process_events(ballsGame *game) {
+bool event_process_events(Game *game) {
     /* Event union */
     SDL_Event event;
     bool quit = 0;
@@ -114,7 +114,7 @@ float event_get_random_direction(void) {
     return (rand() % 10 > 5) ? 0.4f + direction : 0.4f - direction;
 }
 
-void event_cycle_game_mode(ballsGame *game, bool cycle_direction) {
+void event_cycle_game_mode(Game *game, bool cycle_direction) {
     if (cycle_direction) {
         if (game->mode == MAX_GAME_TYPES - 1) {
             game->mode = NORMAL;

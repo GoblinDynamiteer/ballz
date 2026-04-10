@@ -5,7 +5,7 @@
 
 #include "def.h"
 
-bool load_game(ballsGame *game) {
+bool load_game(Game *game) {
 
     /* Random seed */
     srand((int)time(NULL));

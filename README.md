@@ -8,6 +8,12 @@ cmake --build build
 ./build/ballz
 ```
 
+Window size defaults to `1920x1080` and can be overridden at configure time:
+
+```bash
+cmake -S . -B build -DWINDOW_WIDTH=1280 -DWINDOW_HEIGHT=720
+```
+
 ## Linting
 
 ```bash
